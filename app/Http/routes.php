@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('documents/{type}/{id}', 'AdminDocumentsController@show');
     Route::delete('documents/{type}/{id}', 'AdminDocumentsController@destroy');
 
+    Route::get('ticket_logs', 'TicketUpdateLogController@index');
+
     // Frontend
     Route::resource('{company_slug}/tickets', 'TicketController');
     Route::get('{company_slug}/tickets/{id}/archive/{archive}', 'TicketController@archive');

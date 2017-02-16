@@ -267,6 +267,12 @@ $(document).ready(function () {
             e.preventDefault();
         });
 
+        //Tickcet Update Log
+        $('.btn-report-ticket').on('click', function (e) {
+            togglePage($("#report-ticket"), '/ticket_logs', 'ticket_logs');
+            e.preventDefault();
+        });
+
         // When clicking create or a client, load the data and scroll to the view
         $('body').on('click', '.clientFormToggler', function (e) {
             if ($(this).attr('clientId') == 0) {
@@ -544,5 +550,12 @@ $(document).ready(function () {
     $('body').on('click', '.clickable-row', function() {
         window.location.href = $(this).data('href');
     });
+
+    $('body').on('focus', '.rticket-date', function(){
+        $(this).datepicker();
+    });
+    
 });
+
+
 

@@ -118,6 +118,17 @@
                             @if(isset($documentForm) && request()->segment(2) == 'info'){!! $documentForm !!}@endif
                         </div>
                     </div>
+                    
+                    {{-- Report Ticket Section --}}
+                    <a href="#" class="btn-section-link btn-report-ticket">
+                        <strong>Ticket Cost Reports</strong>
+                        <p>This icon allows you to  generate report about ticket that have cost updated.</p>
+                    </a>
+                    <div class="clearfix services-container">
+                        <div class="col-md-12 ajaxable" id="report-ticket" @if(!isset($ticketlog)) style="display:none;" @endif>
+                           @if(isset($ticketlog)){!! $ticketlog !!}@endif
+                        </div>
+                    </div>
                 @else
                     <a href="{{ url(auth()->user()->company_slug . '/tickets') }}" class="btn-section-link btn-maintenance-support" id="btn-maintenance-support">
                         <strong>Maintenance &amp; Support</strong>

@@ -21,6 +21,8 @@
         <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
         <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png">
 
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
+
         <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
         <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96">
@@ -78,6 +80,8 @@
             <script src="/js/validation.js?{{ config('app.hash') }}"></script>
             @yield('scripts')
         @endif
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
 
         @if(app()->environment() != 'local')
         <script src="https://cdnjs.cloudflare.com/ajax/libs/airbrake-js/0.5.8/client.min.js" type="text/javascript"></script>
