@@ -544,5 +544,11 @@ $(document).ready(function () {
     $('body').on('click', '.clickable-row', function() {
         window.location.href = $(this).data('href');
     });
+
+
+    $('.btn-show-smodal').click(function(){
+        var type = $(this).attr('data-stype');
+        $('#stype').val(type);
+    });
 });
 

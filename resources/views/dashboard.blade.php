@@ -11,7 +11,7 @@
 
 <div class="page-heading text-center">
     <h1>Choose a Service</h1>
-
+    {{session()->get('user')}}
     @if(auth()->user()->admin)
     <p>Welcome to Support Administration Hub, please choose a service</p>
     @else
@@ -20,6 +20,13 @@
 </div>
 
 <div class="page-content">
+    @if(Session::has('secure_error'))
+        <div class="row">
+            <div class="alert alert-danger">
+               <strong>Error:</strong> {{ Session::get('secure_error') }}
+            </div>
+        </div>
+    @endif
     <div class="row">
         {{-- If there are no ads to display --}}
         @if(count(auth()->user()->Adverts) == 0)
@@ -123,13 +130,20 @@
                         <strong>Maintenance &amp; Support</strong>
                         <p>Click here to upload a request for web development, blog posts, ask a question about your website, download SEO documents or get a quote.</p>
                     </a>
-
-                    <a href="{{ url(auth()->user()->company_slug . '/documents/seo') }}" class="btn-section-link btn-seo-reports" id="btn-seo-reports">
+    
+                    @if(Session::get('s-company_slug') == auth()->user()->company_slug )
+                        <a href="{{ url(auth()->user()->company_slug . '/documents/seo') }}" class="btn-section-link btn-seo-reports" id="btn-seo-reports">
+                    @else
+                        <a href="#" class="btn-section-link btn-seo-reports btn-show-smodal" id="btn-seo-reports" data-toggle="modal" data-target="#docs-seo-login" data-stype="seo">
+                    @endif
                         <strong>SEO Documents</strong>
                         <p>Click here to view your current &amp; previous SEO Docs.</p>
                     </a>
-
-                    <a href="{{ url(auth()->user()->company_slug . '/documents/info') }}" class="btn-section-link btn-information-documents" id="btn-information-documents">
+                    @if(Session::get('s-company_slug') == auth()->user()->company_slug )
+                        <a href="{{ url(auth()->user()->company_slug . '/documents/info') }}" class="btn-section-link btn-information-documents" id="btn-information-documents">
+                    @else
+                        <a href="#" class="btn-section-link btn-information-documents btn-show-smodal" id="btn-information-documents" data-toggle="modal" data-target="#docs-seo-login" data-stype="info">
+                    @endif
                         <strong>Information Documents</strong>
                         <p>Click here to view your documents. Information, instructions and Terms &amp; Conditions.</p>
                     </a>
@@ -153,6 +167,38 @@
     </div>
 </div>
 @endif
+
+{{-- Modal Section --}}
+
+<div class="modal fade" tabindex="-1" role="dialog" id="docs-seo-login">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form method="GET" action="{{ route('doc.secure_login',['company_slug'=>auth()->user()->company_slug]) }}">
+        {{ csrf_field() }}
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Security Login</h4>
+          </div>
+          <div class="modal-body">
+            
+                <div class="form-group">
+                    <input type="email" class="form-control" id="s-email" name="s-email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="s-password" name="s-password" placeholder="Password" required>
+                </div>
+                <input type="hidden" name="stype" id="stype" value="">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 @endsection
 
 @section('styles')

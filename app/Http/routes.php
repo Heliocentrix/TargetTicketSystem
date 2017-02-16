@@ -57,4 +57,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('{company_slug}/tickets/{ticket_id}/{response_id}/edittime', 'TicketController@editResponseTime');
 
     Route::get('{company_slug}/documents/{type}', 'DocumentsController@index');
+    Route::get('{company_slug}/secure_login', 'DocumentsController@secure_document_login')->name('doc.secure_login');
 });
