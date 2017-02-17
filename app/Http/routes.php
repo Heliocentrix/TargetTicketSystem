@@ -59,4 +59,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('{company_slug}/tickets/{ticket_id}/{response_id}/edittime', 'TicketController@editResponseTime');
 
     Route::get('{company_slug}/documents/{type}', 'DocumentsController@index');
+    Route::post('ticket_logs/export', 'TicketUpdateLogController@exportTicketLogs')->name('ticket_logs.export');
 });

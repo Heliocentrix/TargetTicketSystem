@@ -551,10 +551,9 @@ $(document).ready(function () {
         window.location.href = $(this).data('href');
     });
 
-    $('body').on('focus', '.rticket-date', function(){
+    $('body').on('focus', '.input-daterange', function(){
         $(this).datepicker();
     });
-    
 });
 
 

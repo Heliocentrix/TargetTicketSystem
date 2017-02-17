@@ -20,4 +20,16 @@ class TicketUpdateLog extends Model
     ];
 
     public $timestamps = false;
+
+
+
+    public function tickets()
+    {
+        return $this->belongsTo('TargetInk\Ticket', 'ticket_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo('TargetInk\User', 'created_by');
+    }
 }

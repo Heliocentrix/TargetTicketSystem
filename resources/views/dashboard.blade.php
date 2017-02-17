@@ -120,7 +120,7 @@
                     </div>
                     
                     {{-- Report Ticket Section --}}
-                    <a href="#" class="btn-section-link btn-report-ticket">
+                    <a href="#" class="btn-section-link btn-report-ticket-admin">
                         <strong>Ticket Cost Reports</strong>
                         <p>This icon allows you to  generate report about ticket that have cost updated.</p>
                     </a>

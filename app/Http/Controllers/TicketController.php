@@ -157,19 +157,25 @@ class TicketController extends Controller
     {
         $this->middleware('ownCompany');
         $ticket = Ticket::find($id);
+        
+        if($request->has('cost') && $request->input('cost') != $ticket->cost){
+            $ticket_log = new TicketUpdateLog;
+            $ticket_log->ticket_id = $ticket->id;
+            $ticket_log->cost = (float)$request->input('cost');
+            $ticket_log->created_at = \Carbon\Carbon::now();
+            $ticket_log->created_by = auth()->user()->id;
+            $ticket_log->save();
+        }
+
         if($ticket->client->company_slug != $company_slug) {
             return redirect('/');
         }
+
+
         $ticket->type = ($request->get('type'));
         $ticket->cost = ($request->get('cost'));
-        $ticket->save();
 
-        $ticket_log = new TicketUpdateLog;
-        $ticket_log->ticket_id = $ticket->id;
-        $ticket_log->cost = (float)$ticket->cost;
-        $ticket_log->created_at = \Carbon\Carbon::now();
-        $ticket_log->created_by = auth()->user()->id;
-        $ticket_log->save();
+        $ticket->save();
 
         flash()->success('The ticket has been changed.');
         return redirect()->back();
