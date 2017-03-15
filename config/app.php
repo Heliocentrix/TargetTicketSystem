@@ -176,6 +176,8 @@ return [
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -232,6 +234,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
 
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class
     ],
 
 ];

@@ -1115,3 +1115,9 @@ p.document {
 #maintenance-support-div {
     margin-bottom: 48px;
 }
+.btn-report-ticket-admin:before {
+    background-position: -876px 0;
+}
+.btn-report-ticket-admin:hover:before{
+    background-position: -876px bottom;
+}

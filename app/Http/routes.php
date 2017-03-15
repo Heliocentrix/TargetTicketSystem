@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('documents/{type}/{id}', 'AdminDocumentsController@show');
     Route::delete('documents/{type}/{id}', 'AdminDocumentsController@destroy');
 
+    Route::get('ticket_logs', 'TicketUpdateLogController@index');
+
     // Frontend
     Route::resource('{company_slug}/tickets', 'TicketController');
     Route::get('{company_slug}/tickets/{id}/archive/{archive}', 'TicketController@archive');
@@ -58,4 +60,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('{company_slug}/documents/{type}', 'DocumentsController@index');
     Route::get('{company_slug}/secure_login', 'DocumentsController@secure_document_login')->name('doc.secure_login');
+    
+    Route::post('ticket_logs/export', 'TicketUpdateLogController@exportTicketLogs')->name('ticket_logs.export');
 });

@@ -3,21 +3,19 @@
 namespace TargetInk\Http\Controllers;
 
 use Illuminate\Http\Request;
-use TargetInk\Http\Requests;
-use TargetInk\Http\Controllers\Controller;
-
-use TargetInk\Http\Middleware\OwnCompany;
-
-use TargetInk\Ticket;
-use TargetInk\Response;
-use TargetInk\Attachment;
-use TargetInk\User;
-use TargetInk\Http\Requests\TicketRequest;
-use TargetInk\Http\Requests\ResponseRequest;
-
-use Storage;
 use Image;
 use Mail;
+use Storage;
+use TargetInk\Attachment;
+use TargetInk\Http\Controllers\Controller;
+use TargetInk\Http\Middleware\OwnCompany;
+use TargetInk\Http\Requests;
+use TargetInk\Http\Requests\ResponseRequest;
+use TargetInk\Http\Requests\TicketRequest;
+use TargetInk\Response;
+use TargetInk\Ticket;
+use TargetInk\TicketUpdateLog;
+use TargetInk\User;
 
 class TicketController extends Controller
 {
@@ -159,12 +157,26 @@ class TicketController extends Controller
     {
         $this->middleware('ownCompany');
         $ticket = Ticket::find($id);
+        
+        if($request->has('cost') && $request->input('cost') != $ticket->cost){
+            $ticket_log = new TicketUpdateLog;
+            $ticket_log->ticket_id = $ticket->id;
+            $ticket_log->cost = (float)$request->input('cost');
+            $ticket_log->created_at = \Carbon\Carbon::now();
+            $ticket_log->created_by = auth()->user()->id;
+            $ticket_log->save();
+        }
+
         if($ticket->client->company_slug != $company_slug) {
             return redirect('/');
         }
+
+
         $ticket->type = ($request->get('type'));
         $ticket->cost = ($request->get('cost'));
+
         $ticket->save();
+
         flash()->success('The ticket has been changed.');
         return redirect()->back();
     }
