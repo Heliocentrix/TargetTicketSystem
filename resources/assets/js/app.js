@@ -268,7 +268,7 @@ $(document).ready(function () {
         });
 
         //Tickcet Update Log
-        $('.btn-report-ticket').on('click', function (e) {
+        $('.btn-report-ticket-admin').on('click', function (e) {
             togglePage($("#report-ticket"), '/ticket_logs', 'ticket_logs');
             e.preventDefault();
         });
