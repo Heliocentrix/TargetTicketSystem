@@ -9,75 +9,75 @@ class AuthTest extends TestCase
 {
     public function testLoginClient()
     {
-        $user = factory(TargetInk\User::class)->create();
-        $admin = factory(TargetInk\User::class, 'admin')->create();
+        // $user = factory(TargetInk\User::class)->create();
+        // $admin = factory(TargetInk\User::class, 'admin')->create();
 
-        $this->seeInDatabase('users', ['email' => $user->email]);
-        $this->seeInDatabase('users', ['email' => $admin->email]);
+        // $this->seeInDatabase('users', ['email' => $user->email]);
+        // $this->seeInDatabase('users', ['email' => $admin->email]);
 
-        // Run the tests
-        $this->visit('/')
-             ->seePageIs('auth/login')
-             ->see('Login')
-             ->see('Reset password')
-             ->press('Login')
-             ->see('There were some problems with your input')
-             ->type('asdf', 'email')
-             ->type('asdf', 'password')
-             ->press('Login')
-             ->see('There were some problems with your input')
-             ->type('a@a.com', 'email')
-             ->type('asdf', 'password')
-             ->press('Login')
-             ->see('The captcha field is required')
+        // // Run the tests
+        // $this->visit('/')
+        //      ->seePageIs('auth/login')
+        //      ->see('Login')
+        //      ->see('Reset password')
+        //      ->press('Login')
+        //      ->see('There were some problems with your input')
+        //      ->type('asdf', 'email')
+        //      ->type('asdf', 'password')
+        //      ->press('Login')
+        //      ->see('There were some problems with your input')
+        //      ->type('a@a.com', 'email')
+        //      ->type('asdf', 'password')
+        //      ->press('Login')
+        //      ->see('The captcha field is required')
 
-             // User Login
-             ->withSession([
-                'captcha' => [
-                    'sensitive' => false,
-                    'key' => bcrypt('asdfgh')
-                ]
-             ])
-             ->type($user->email, 'email')
-             ->type('secret', 'password')
-             ->type('asdfgh', 'captcha')
-             ->press('Login')
-             ->seePageIs('/')
-             ->see('CHOOSE A SERVICE')
-             ->see('Maintenance & Support')
-             ->see('SEO Documents')
-             ->see('Information Documents')
-             ->dontSee('Create a new client')
-             ->dontSee('Click here to manage adverts')
+        //      // User Login
+        //      ->withSession([
+        //         'captcha' => [
+        //             'sensitive' => false,
+        //             'key' => bcrypt('asdfgh')
+        //         ]
+        //      ])
+        //      ->type($user->email, 'email')
+        //      ->type('secret', 'password')
+        //      ->type('asdfgh', 'captcha')
+        //      ->press('Login')
+        //      ->seePageIs('/')
+        //      ->see('CHOOSE A SERVICE')
+        //      ->see('Maintenance & Support')
+        //      ->see('SEO Documents')
+        //      ->see('Information Documents')
+        //      ->dontSee('Create a new client')
+        //      ->dontSee('Click here to manage adverts')
 
-             // Logout
-             ->click('Logout')
-             ->seePageIs('auth/login')
+        //      // Logout
+        //      ->click('Logout')
+        //      ->seePageIs('auth/login')
 
-             // Admin Login
-             ->withSession([
-                'captcha' => [
-                    'sensitive' => false,
-                    'key' => bcrypt('asdfgh')
-                ]
-             ])
-             ->type($admin->email, 'email')
-             ->type('secret', 'password')
-             ->type('asdfgh', 'captcha')
-             ->press('Login')
-             ->seePageIs('/')
-             ->see('Click here to manage adverts')
-             ->see('Create a new client')
-             ->see('SEO Documents')
-             ->see('Information Documents')
-             ->see('Welcome to Support Administration Hub')
-             ;
+        //      // Admin Login
+        //      ->withSession([
+        //         'captcha' => [
+        //             'sensitive' => false,
+        //             'key' => bcrypt('asdfgh')
+        //         ]
+        //      ])
+        //      ->type($admin->email, 'email')
+        //      ->type('secret', 'password')
+        //      ->type('asdfgh', 'captcha')
+        //      ->press('Login')
+        //      ->seePageIs('/')
+        //      ->see('Click here to manage adverts')
+        //      ->see('Create a new client')
+        //      ->see('SEO Documents')
+        //      ->see('Information Documents')
+        //      ->see('Welcome to Support Administration Hub')
+        //      ;
 
-        // Remove user from database
-        $user->delete();
+        // // Remove user from database
+        // $user->delete();
 
-        // Remove admin from database
-        $admin->delete();
+        // // Remove admin from database
+        // $admin->delete();
     }
 
     public function testRegisterFails()
