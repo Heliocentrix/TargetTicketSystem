@@ -1,4 +1,4 @@
-<div class="container-ticker-report" style="margin-top: 35px;position: relative;display: inline-block;">
+<div class="container-ticker-report col-md-12" style="margin-top: 35px;position: relative;display: inline-block;">
     <div class="col-md-6 col-md-offset-3">
         {!! Form::open(['route' => 'ticket_logs.export']) !!}
             <div class="form-group">
