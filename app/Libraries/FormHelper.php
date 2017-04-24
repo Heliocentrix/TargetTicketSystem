@@ -1,7 +1,7 @@
 <?php
 
 class FormHelper {
-	static function bs($type = 'text', $name = '', $text = '', $default = null, $data = null, $placeholder = null) {
+	public static function bs($type = 'text', $name = '', $text = '', $default = null, $data = null, $placeholder = null) {
 		return View::make('includes.bsblock')->with(['type' => $type, 'name' => $name, 'text' => $text, 'data' => $data, 'default' => $default, 'placeholder' => $placeholder]);
 	}
 
@@ -21,7 +21,7 @@ class FormHelper {
 		}
 	}
 
-	static function dataGetLang($dataList = null, $formList = false, $lang = 'en-uk')
+	public static function dataGetLang($dataList = null, $formList = false, $lang = 'en-uk')
 	{
 		$list = DataList::where('slug' , '=', $dataList)->first();
 

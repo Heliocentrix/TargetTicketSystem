@@ -5,7 +5,7 @@ use DB;
 class Slug {
 	
 	// Create a unique slug
-	static function make($name, $table = null, $column = null)
+	public static function make($name, $table = null, $column = null)
 	{
 		$valid = false;
 		$i = 0;
@@ -31,7 +31,7 @@ class Slug {
 		
 	}
 
-	static function make_slug($text)
+	public static function make_slug($text)
 	{
 		$text = preg_replace('~[^\\pL\d]+~u', '-', $text); // replace non letter or digits by -
 		$text = trim($text, '-'); // trim
