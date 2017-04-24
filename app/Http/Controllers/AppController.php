@@ -23,7 +23,7 @@ class AppController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $clients = null;
         if(auth()->user()->admin) {
@@ -37,7 +37,7 @@ class AppController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         return view('dashboard.advertEdit');
     }
@@ -109,12 +109,7 @@ class AppController extends Controller
             'cache_path_prefix' => 'cache',
             'response' => new LaravelResponseFactory(),
         ]);
-/*
-        header('Content-Type:'.$cache->getMimetype($path));
-        header('Content-Length:'.$cache->getSize($path));
-        header('Cache-Control:'.'max-age=31536000, public');
-        header('Expires:'.date_create('+1 years')->format('D, d M Y H:i:s').' GMT');
-*/
+
         return $server->getImageResponse($path, $request->all());
     }
 }

@@ -123,7 +123,7 @@ class ClientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
         return redirect()->route('clients.edit', ['id' => $id]);
     }

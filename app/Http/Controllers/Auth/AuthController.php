@@ -71,7 +71,7 @@ class AuthController extends Controller
      * Handle a login request to the application.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function postLogin(Request $request)
     {
