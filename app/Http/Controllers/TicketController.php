@@ -252,9 +252,7 @@ class TicketController extends Controller
         $user_id = $request->input('user_id');
         $archived = $request->input('archived');
         $new_order = $request->input('new_order');
-
-        $tickets = Ticket::where('client_id', '=', $user_id)->where('archived', '=', $archived)->whereIn('id', $new_order)->get();
-
+        
         $query = "UPDATE tickets SET tickets.order = CASE id ";
 
         foreach($new_order as $order => $id) {
@@ -275,7 +273,7 @@ class TicketController extends Controller
         \DB::update($query);
     }
 
-    public function move(Request $request, $direction, $user_id, $ticket_id, $archived)
+    public function move($direction, $user_id, $ticket_id, $archived)
     {
         $tickets = Ticket::where('client_id', $user_id)->where('archived', $archived)->orderBy('order', 'asc')->get();
 

@@ -122,7 +122,7 @@ return array(
             'backtrace'         => false,  // EXPERIMENTAL: Use a backtrace to find the origin of the query in your files.
             'explain' => array(            // EXPERIMENTAL: Show EXPLAIN output on queries
                 'enabled' => false,
-                'types' => array('SELECT'), // array('SELECT', 'INSERT', 'UPDATE', 'DELETE'); for MySQL 5.6.3+
+                'types' => array('SELECT'), // CRUD for MySQL 5.6.3+
             ),
             'hints'             => true,    // Show hints for common mistakes
         ),

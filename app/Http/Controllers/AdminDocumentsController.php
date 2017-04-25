@@ -141,10 +141,11 @@ class AdminDocumentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  string  $type
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DocumentSeoDeleteRequest $request, $type, $id)
+    public function destroy($type, $id)
     {
         $file = File::find($id);
         $file->delete();
