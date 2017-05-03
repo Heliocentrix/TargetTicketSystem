@@ -249,8 +249,6 @@ class TicketController extends Controller
 
     public function setOrder(Request $request)
     {
-        $user_id = $request->input('user_id');
-        $archived = $request->input('archived');
         $new_order = $request->input('new_order');
         
         $query = "UPDATE tickets SET tickets.order = CASE id ";
