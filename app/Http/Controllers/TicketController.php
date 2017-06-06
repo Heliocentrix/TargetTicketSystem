@@ -113,18 +113,7 @@ class TicketController extends Controller
             $recipients[$client->second_email] = $client->instant;
         }
 
-        foreach($recipients as $recipientEmail => $recipientInstantKey) {
-            Mail::send('emails.newTicket', ['instant' => $recipientInstantKey, 'user' => $client, 'response' => $response, 'ticket' => $ticket], function ($message) use ($client, $response, $ticket, $recipientEmail) {
-                $message->to($recipientEmail);
-
-                $priority = '';
-                if($ticket->priority) {
-                    $priority = 'PRIORITY ';
-                }
-
-                $message->subject($priority . 'Support Request:' . $ticket->getRef());
-            });
-        }
+        $this->emailTicketSend($recipients, $client, $response, $ticket, 'new');
 
         return redirect('/')->with('ticket_success', true)->with('company_slug', $company_slug);
     }
@@ -250,25 +239,16 @@ class TicketController extends Controller
     public function setOrder(Request $request)
     {
         $new_order = $request->input('new_order');
+        $totalTickets = count($new_order);
+
+        if($totalTickets > 1){
+            foreach ($new_order as $key => $value) {
+                Ticket::find($value)->update([
+                    'order' => $totalTickets - $key
+                ]);
+            }
+        }
         
-        $query = "UPDATE tickets SET tickets.order = CASE id ";
-
-        foreach($new_order as $order => $id) {
-            //ORDER IS REVERSE CAUSE WHEN U ADD A NEW ONE IS MAX ORDER +1 AND SHOULD APPEAR FIRST
-            $query .= ' WHEN ' . $id . ' THEN ' . (count($new_order)-$order);
-        }
-
-        $query .= " END WHERE id IN (";
-
-        foreach($new_order as $order => $id) {
-            $query .= $id . ',';
-        }
-
-        $query = rtrim($query, ",");
-
-        $query .= ")";
-
-        \DB::update($query);
     }
 
     public function move($direction, $user_id, $ticket_id, $archived)
@@ -360,18 +340,7 @@ class TicketController extends Controller
             $recipients[$client->second_email] = $client->instant;
         }
 
-        foreach($recipients as $recipientEmail => $recipientInstantKey) {
-            Mail::send('emails.newTicketReply', ['instant' => $recipientInstantKey, 'user' => $client, 'response' => $response, 'ticket' => $ticket], function ($message) use ($client, $response, $ticket, $recipientEmail) {
-                $message->to($recipientEmail);
-
-                $priority = '';
-                if($ticket->priority) {
-                    $priority = 'PRIORITY ';
-                }
-
-                $message->subject($priority . 'Support Request:' . $ticket->getRef());
-            });
-        }
+        $this->emailTicketSend($recipients, $client, $response, $ticket, 'reply');
 
         return redirect()->back();
     }
@@ -429,5 +398,25 @@ class TicketController extends Controller
 
         flash()->success('The response has been updated.');
         return redirect()->back();
+    }
+
+    private function emailTicketSend($recipients,$client, $response, $ticket, $type = null)
+    {
+        $ticketType = ['new' => 'newTicket', 'reply' => 'newTicketReply'];
+        if(array_key_exists($type, $ticketType)){
+            foreach($recipients as $recipientEmail => $recipientInstantKey) {
+                Mail::send('emails.' . $ticketType[$type], ['instant' => $recipientInstantKey, 'user' => $client, 'response' => $response, 'ticket' => $ticket], function ($message) use ($client, $response, $ticket, $recipientEmail) {
+                    $message->to($recipientEmail);
+
+                    $priority = '';
+                    if($ticket->priority) {
+                        $priority = 'PRIORITY ';
+                    }
+
+                    $message->subject($priority . 'Support Request:' . $ticket->getRef());
+                });
+            }
+        }
+        
     }
 }
