@@ -236,12 +236,16 @@ class TicketController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Set Order of the tickets
+     * @param \Illuminate\Http\Request $request 
+     */
     public function setOrder(Request $request)
     {
         $new_order = $request->input('new_order');
-        $totalTickets = count($new_order);
-
-        if($totalTickets > 1){
+        
+        if(is_array($new_order)){
+            $totalTickets = count($new_order);
             foreach ($new_order as $key => $value) {
                 Ticket::find($value)->update([
                     'order' => $totalTickets - $key
