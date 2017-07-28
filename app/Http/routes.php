@@ -57,6 +57,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('{company_slug}/tickets/{id}/respond/{value}', 'TicketController@respond');
     Route::post('{company_slug}/tickets/{id}/addresponse', 'TicketController@addResponse');
     Route::post('{company_slug}/tickets/{ticket_id}/{response_id}/edittime', 'TicketController@editResponseTime');
+    Route::get('{company_slug}/tickets/{ticket}/{response}/editResponse', 'TicketController@editResponse');
+    Route::put('{company_slug}/tickets/{ticket}/{response}/editResponse', 'TicketController@updateResponse')->name('ticket.response.update');
 
     Route::get('{company_slug}/documents/{type}', 'DocumentsController@index');
     Route::get('{company_slug}/secure_login', 'DocumentsController@secure_document_login')->name('doc.secure_login');

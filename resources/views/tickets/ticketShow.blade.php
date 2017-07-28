@@ -102,6 +102,15 @@
 									({{ $response->formatWorkingTime() }})
 								@endif
 							@endif
+
+							@if($response->admin)
+								<a class="btn btn-primary btn-xs pull-right" 
+									style="min-width: initial;" 
+									href="{{ url($company_slug . '/tickets/' . $ticket->id . '/' . $response->id . '/editResponse') }}">
+
+									<i class="fa fa-pencil" aria-hidden="true"></i>
+								</a>
+							@endif
 						</div>
 						<div class="panel-body">
 							<div>{!! nl2br($response->content, false) !!}</div>

@@ -27,6 +27,9 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot($router);
+
+        $router->model('ticket', 'TargetInk\Ticket');
+        $router->model('response', 'TargetInk\Response');
     }
 
     /**

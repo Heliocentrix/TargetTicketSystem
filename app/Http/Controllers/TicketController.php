@@ -423,4 +423,19 @@ class TicketController extends Controller
         }
         
     }
+
+
+    public function editResponse($companySlug, Ticket $ticket, Response $response)
+    {
+        return view('tickets.response.edit', compact('response', 'companySlug', 'ticket'));
+    }
+
+    public function updateResponse($companySlug, Ticket $ticket, Response $response)
+    {
+        $response->update([
+            'content' => request('content')
+            ]);
+        flash()->success('The response has been updated.');
+        return redirect("{$companySlug}/tickets/{$ticket->id}");
+    }
 }
