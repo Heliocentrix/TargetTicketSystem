@@ -535,7 +535,8 @@ tr:hover .show-on-hover {
 .btn-web-amends:hover,
 .btn-add-content:hover,
 .btn-get-quote:hover,
-.btn-ask-question:hover {
+.btn-ask-question:hover,
+.btn-artwork:hover {
     cursor:pointer;
 }
 

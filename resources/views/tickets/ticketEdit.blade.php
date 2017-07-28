@@ -22,6 +22,7 @@
 				{!! Form::radio('type', '2', @$ticket->type == 2, ['class' => 'type', 'id' => 'add-content']) !!} <label for="add-content" class="btn-add-content"></label>
 				{!! Form::radio('type', '3', @$ticket->type == 3, ['class' => 'type', 'id' => 'get-quote']) !!} <label for="get-quote" class="btn-get-quote"></label>
 				{!! Form::radio('type', '4', @$ticket->type == 4, ['class' => 'type', 'id' => 'ask-question']) !!} <label for="ask-question" class="btn-ask-question"></label>
+				{!! Form::radio('type', '5', @$ticket->type == 5, ['class' => 'type', 'id' => 'artwork']) !!} <label for="artwork" class="btn-artwork">ARTWORK</label>
 			</div>
 			<div class="ticket-form">
 	           	<div @if($errors->has('title')) has-error dark @endif>

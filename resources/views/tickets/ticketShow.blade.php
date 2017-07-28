@@ -40,9 +40,9 @@
            		{!! Form::label('type', 'Ticket Type', ['class' => 'col-sm-4 form-label']) !!}
            		<div class="col-sm-8">
            			@if(auth()->user()->admin)
-           				{!! Form::select('type', [1 => "Web Amends", 2 => "Add Content", 3 => "Get Quote", 4 => "Ask Question"], $ticket->type, ['class' => 'form-control']) !!}
+           				{!! Form::select('type', [1 => "Web Amends", 2 => "Add Content", 3 => "Get Quote", 4 => "Ask Question", 5 => "Artwork"], $ticket->type, ['class' => 'form-control']) !!}
            			@else
-	           			{!! Form::select('type', [1 => "Web Amends", 2 => "Add Content", 3 => "Get Quote", 4 => "Ask Question"], $ticket->type, ['class' => 'form-control', 'disabled']) !!}
+	           			{!! Form::select('type', [1 => "Web Amends", 2 => "Add Content", 3 => "Get Quote", 4 => "Ask Question", 5 => "Artwork"], $ticket->type, ['class' => 'form-control', 'disabled']) !!}
 	           		@endif
            		</div>
             </div>

@@ -171,6 +171,15 @@ function toggleFormFields(typeValue){
             $('#content').attr('placeholder', 'How can we help...');
             $('.form-title-input').attr('placeholder', 'Title');
             break;
+         case '5':
+            $('#publishedAtDiv').addClass('hidden');
+            $('#authorDiv').addClass('hidden');
+            $('#categoriesDiv').addClass('hidden');
+            $('#artitcleTitleDiv').addClass('hidden');
+            $('#scheduleDiv').removeClass('hidden');
+            $('#content').attr('placeholder', 'Your Text');
+            $('.form-title-input').attr('placeholder', 'Title');
+            break;
         default:
             break;
     }

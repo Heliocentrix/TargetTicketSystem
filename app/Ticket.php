@@ -52,6 +52,8 @@ class Ticket extends Model
             return 'Get Quote';
         } elseif($this->type == 4) {
             return 'Ask Question';
+        } elseif($this->type == 5) {
+            return 'Artwork';
         }
     }
 
