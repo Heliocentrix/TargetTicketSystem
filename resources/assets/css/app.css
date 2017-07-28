@@ -524,7 +524,8 @@ tr:hover .show-on-hover {
 .btn-web-amends,
 .btn-add-content,
 .btn-get-quote,
-.btn-ask-question {
+.btn-ask-question,
+.btn-artwork {
     width: 146px;
     height: 146px;
     background-image: url(/images/user-icons.png);
@@ -560,6 +561,10 @@ input[type="radio"].type {
     background-position: -438px top;
 }
 
+.btn-artwork {
+    background-position: -584px top;
+}
+
 .btn-web-amends:hover, .btn-web-amends.selected {
     background-position: 0px bottom;
 }
@@ -574,6 +579,10 @@ input[type="radio"].type {
 
 .btn-ask-question:hover, .btn-ask-question.selected {
     background-position: -438px bottom;
+}
+
+.btn-artwork:hover, .btn-artwork.selected {
+    background-position: -584px bottom;
 }
 
 .ticket-form .form-control, .ticket-form textarea {
