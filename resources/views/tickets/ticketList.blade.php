@@ -73,6 +73,7 @@
                         <th>Ticket Title</th>
                         <th class="hidden-sm hidden-xs">Ref No.</th>
                         <th class="hidden-xs">Ticket Type</th>
+                        <th class="hidden-xs">Priority</th>
                         <th class="hidden-xs">Cost</th>
                         <th class="text-center">Response</th>
                         @if($archived)
@@ -94,6 +95,7 @@
                             <td class="td-adjust">{{ $ticket->title }}</td>
                             <td class="td-adjust hidden-sm hidden-xs">{{ $ticket->getRef() }}</td>
                             <td class="td-adjust hidden-xs">{{ $ticket->getType() }}</td>
+                            <td class="td-adjust hidden-xs">{{ $ticket->getPriority() }}</td>
                             <td class="td-adjust hidden-xs">@if($ticket->cost) &pound;{{ $ticket->cost }} @else N/A @endif</td>
                             <td class="text-center">
                                 @if(auth()->user()->admin)

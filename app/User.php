@@ -36,7 +36,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'phone',
         'web',
         'type',
-        'start_date'
+        'start_date',
+        'active'
     ];
 
     /**

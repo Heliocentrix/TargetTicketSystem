@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
     // Backend
     Route::get('maintenance', 'AppController@showMaintenance');
     Route::resource('clients', 'ClientsController');
+    Route::put('clients/{client_id}/active', 'ClientsController@active')->name('clients.active');
     Route::resource('adverts', 'AdvertController');
     Route::resource('services', 'ServicesController');
 

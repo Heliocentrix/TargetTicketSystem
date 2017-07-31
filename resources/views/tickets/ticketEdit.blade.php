@@ -67,6 +67,14 @@
 		        		{!! Form::text('article_title', @$ticket->article_title, ['class' => 'form-control', 'placeholder' => 'Article Or Event Title']) !!}
 		        	</div>
 		        </div>
+
+		        @if(!auth()->user()->active)
+		        	<div class="alert alert-danger col-xs-12" role="alert">
+		        		<p>
+							Please note as you do not have an active maintenance account you may be charged for quoting on technical or development quote requests, this applies to all types of tickets that need to be reviewed before action is taken - for more information please call 01892 800400.
+						</p>
+		        	</div>
+		        @endif
 			    <div>
 			    	{!! Form::submit('submit', ['class' => 'btn btn-info btn-submit-ticket target-btn']) !!}
 			    </div>

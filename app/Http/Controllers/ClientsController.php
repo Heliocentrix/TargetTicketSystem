@@ -213,4 +213,12 @@ class ClientsController extends Controller
             'id'        => $client->id,
         ]);
     }
+
+    public function active($id)
+    {
+        $client  = User::find($id);
+        $client->update(request()->all());
+
+        return back();
+    }
 }
