@@ -101,7 +101,7 @@ class ClientsController extends Controller
         // Send an email
         $recipients = [
             $client->email => $client->instant,
-            config('app.email_to') => false,
+            config('app.email_to') => $client->instant,
         ];
 
         if($client->second_email) {
