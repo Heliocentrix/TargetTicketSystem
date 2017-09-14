@@ -75,7 +75,7 @@
 
         <script src="{{ elixir('build/js/app.js') }}"></script>
         @if(auth()->check())
-            {{-- <script src="/js/validation.js?{{ config('app.hash') }}"></script> --}}
+            <script src="/js/validation.js?{{ config('app.hash') }}"></script>
             @yield('scripts')
         @endif
 
